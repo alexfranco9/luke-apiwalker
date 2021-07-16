@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import { Router } from '@reach/router';
+import Form from './components/Form';
+import Results from './components/Results';
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
-  return (
+  const [data, setData] = useState();
+  const [error, setError] = useState();
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <br/>
+    <Form data={ setData } error={ setError }/>
+      <Router>
+        <Results Info={ data } error={ error } path="/:resource/:id" />
+      </Router>
     </div>
   );
 }
